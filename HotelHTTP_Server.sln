@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelHTTP.API", "HotelHTTP.API\HotelHTTP.API.csproj", "{3804ADAD-6633-4903-ADE6-BF6EC87B8015}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.API", "HotelHTTP.API\Hotel.API.csproj", "{3804ADAD-6633-4903-ADE6-BF6EC87B8015}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelHTTP.Domain", "HotelHTTP.Domain\HotelHTTP.Domain.csproj", "{FB6578A1-6ABB-4A5F-BA03-C14729729F82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Domain", "HotelHTTP.Domain\Hotel.Domain.csproj", "{FB6578A1-6ABB-4A5F-BA03-C14729729F82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelHTTP.Application", "HotelHTTP.Application\HotelHTTP.Application.csproj", "{338633CB-652A-45DA-BD19-A913286EF321}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelHttp.Infrastracture", "HotelHttp.Infrastracture\HotelHttp.Infrastracture.csproj", "{F316630A-63C5-423A-8011-13CF76B4C709}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Infrastracture", "HotelHttp.Infrastracture\Hotel.Infrastracture.csproj", "{F316630A-63C5-423A-8011-13CF76B4C709}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{FB6578A1-6ABB-4A5F-BA03-C14729729F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB6578A1-6ABB-4A5F-BA03-C14729729F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB6578A1-6ABB-4A5F-BA03-C14729729F82}.Release|Any CPU.Build.0 = Release|Any CPU
-		{338633CB-652A-45DA-BD19-A913286EF321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{338633CB-652A-45DA-BD19-A913286EF321}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{338633CB-652A-45DA-BD19-A913286EF321}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{338633CB-652A-45DA-BD19-A913286EF321}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F316630A-63C5-423A-8011-13CF76B4C709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F316630A-63C5-423A-8011-13CF76B4C709}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F316630A-63C5-423A-8011-13CF76B4C709}.Release|Any CPU.ActiveCfg = Release|Any CPU
