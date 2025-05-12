@@ -3,7 +3,7 @@ using Hotel.Domain.Entitys;
 
 namespace Hotel.Infrastracture.Data
 {
-    internal class HotelDBContext : DbContext
+    public class HotelDBContext : DbContext
     {
         public HotelDBContext(DbContextOptions<HotelDBContext> options) :base(options)
         {
