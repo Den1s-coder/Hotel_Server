@@ -6,7 +6,24 @@ using System.Threading.Tasks;
 
 namespace Hotel.Domain.Entitys
 {
-    public class User
+    public class User 
     {
+        public Guid Id { get; private set; }
+        public string Name { get; private set; }
+        public string PasswordHash {  get; private set; }
+        public string Email { get; private set; }
+
+        private User(Guid id, string name, string passwordhash,string email) 
+        {
+            Id = id;
+            Name = name;
+            PasswordHash = passwordhash;
+            Email = email;
+        }
+
+        public static User Create(Guid id, string name, string passwordhash, string email)
+        {
+            return new User(id, name, passwordhash, email);
+        }
     }
 }
