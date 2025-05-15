@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Hotel.Domain.Entitys;
+using Hotel.Domain.Entities;
 
 namespace Hotel.Infrastracture.Data
 {
