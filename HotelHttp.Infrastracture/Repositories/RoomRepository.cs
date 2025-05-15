@@ -1,4 +1,4 @@
-﻿using Hotel.Domain.Entitys;
+﻿using Hotel.Domain.Entities;
 using Hotel.Domain.Interfaces;
 using Hotel.Infrastracture.Data;
 using Microsoft.EntityFrameworkCore;
