@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotel.Domain.Entitys
+namespace Hotel.Domain.Entities
 {
     public class User 
     {
