@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotel.Domain.Interfaces
+namespace Hotel.Domain.Interfaces.Repo
 {
     public interface IUserRepository
     {
