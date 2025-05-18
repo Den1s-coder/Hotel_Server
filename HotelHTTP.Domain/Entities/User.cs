@@ -13,11 +13,11 @@ namespace Hotel.Domain.Entities
         public string PasswordHash {  get; private set; }
         public string Email { get; private set; }
 
-        private User(Guid id, string name, string passwordhash,string email) 
+        private User(Guid id, string name, string passwordHash,string email) 
         {
             Id = id;
             Name = name;
-            PasswordHash = passwordhash;
+            PasswordHash = passwordHash;
             Email = email;
         }
 

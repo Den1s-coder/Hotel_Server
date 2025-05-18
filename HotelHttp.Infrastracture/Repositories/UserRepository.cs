@@ -1,5 +1,5 @@
 ﻿using Hotel.Domain.Entities;
-using Hotel.Domain.Interfaces;
+using Hotel.Domain.Interfaces.Repo;
 using Hotel.Infrastracture.Data;
 
 namespace Hotel.Infrastracture.Repositories

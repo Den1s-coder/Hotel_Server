@@ -1,6 +1,6 @@
 ﻿using Hotel.Domain.Entities;
 
-namespace Hotel.Domain.Interfaces
+namespace Hotel.Domain.Interfaces.Repo
 {
     public interface IRoomRepository
     {
