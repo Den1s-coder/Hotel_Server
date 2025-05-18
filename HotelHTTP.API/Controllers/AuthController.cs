@@ -16,10 +16,11 @@ namespace Hotel.API.Controllers
         private readonly TokenService _tokenSerive;
         private readonly IPasswordHasher _passwordHasher;
 
-        public AuthController(IUserRepository userRepo, TokenService tokenSerive)
+        public AuthController(IUserRepository userRepo, TokenService tokenSerive, IPasswordHasher passwordHasher)
         {
             _userRepo = userRepo;
             _tokenSerive = tokenSerive;
+            _passwordHasher = passwordHasher;
         }
 
         [HttpPost("register")]
