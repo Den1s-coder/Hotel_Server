@@ -12,13 +12,13 @@ namespace Hotel.API.Controllers
     [Route("api/[controller]")]
     public class AuthController : Controller
     {
-        private readonly IUserRepository _userRepo;
+        private readonly AuthService _authService;
         private readonly TokenService _tokenSerive;
         private readonly IPasswordHasher _passwordHasher;
 
-        public AuthController(IUserRepository userRepo, TokenService tokenSerive, IPasswordHasher passwordHasher)
+        public AuthController(AuthService authService, TokenService tokenSerive, IPasswordHasher passwordHasher)
         {
-            _userRepo = userRepo;
+            _authService = authService;
             _tokenSerive = tokenSerive;
             _passwordHasher = passwordHasher;
         }
@@ -26,16 +26,7 @@ namespace Hotel.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
-            var existing = await _userRepo.GetByEmail(request.Email);
-            if (existing != null)
-            {
-                return Conflict("Користувача з такою поштою не існує.");
-            }
-
-            var hashedPassword = _passwordHasher.Generate(request.Password);
-            var user = Hotel.Domain.Entities.User.Create(Guid.NewGuid(), request.Name, hashedPassword, request.Email);
-
-            await _userRepo.Add(user);
+            await _authService.Register(request);
 
             return Ok("Користувача зареєстровано");
         }
@@ -43,17 +34,25 @@ namespace Hotel.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest request)
         {
-            var user = await _userRepo.GetByEmail(request.Email);
-            if(user == null)
+            string token;
+
+            try
             {
-                return Unauthorized("Невірна пошта або пароль.");
+                token = await _authService.Login(request);
             }
-            if (!_passwordHasher.Verify(request.Password, user.PasswordHash))
-            {
-                return Unauthorized("Невірна пошта або пароль.");
+            catch (Exception ex) 
+            { 
+                return BadRequest(ex.Message);
             }
 
-            var token = _tokenSerive.GenerateToken(user.Email);
+            Response.Cookies.Append("wery_good_cookies", token, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTimeOffset.UtcNow.AddHours(1)
+            });
+
             return Ok(new { token });
         }
     }

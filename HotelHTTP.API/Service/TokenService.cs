@@ -33,7 +33,9 @@ namespace Hotel.API.Service
                 signingCredentials: creds
             );
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return tokenValue;
         }
     }
 }
