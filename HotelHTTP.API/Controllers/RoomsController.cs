@@ -1,83 +1,50 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Hotel.API.Service;
+using Hotel.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hotel.API.Controllers
 {
+
+    [ApiController]
+    [Route("api/[controller]")]
     public class RoomsController : Controller
     {
-        // GET: RoomsController
-        public ActionResult Index()
+        private readonly RoomService _roomService;
+
+        public RoomsController(RoomService roomService)
         {
-            return View();
+            _roomService = roomService;
         }
 
-        // GET: RoomsController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
         {
-            return View();
+            var rooms = await _roomService.GetAllRoomsAsync();
+            return Ok(rooms);
         }
 
-        // GET: RoomsController/Create
-        public ActionResult Create()
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            return View();
+            var room = await _roomService.GetRoomByIdAsync(id);
+            return Ok(room);
         }
 
-        // POST: RoomsController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [Authorize]
+        public async Task<IActionResult> Create([FromBody] Room room)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _roomService.AddRoomAsync(room);
+            return Ok();
         }
 
-        // GET: RoomsController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
-        }
-
-        // POST: RoomsController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: RoomsController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: RoomsController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _roomService.DeleteRoomAsync(id);
+            return Ok();
         }
     }
 }
