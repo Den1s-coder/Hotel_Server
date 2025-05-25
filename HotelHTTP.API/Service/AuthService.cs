@@ -27,7 +27,7 @@ namespace Hotel.API.Service
             }
 
             var hashedPassword = _passwordHasher.Generate(request.Password);
-            var user = Hotel.Domain.Entities.User.Create(Guid.NewGuid(), request.Name, hashedPassword, request.Email);
+            var user = Hotel.Domain.Entities.User.Create(Guid.NewGuid(), request.Name, hashedPassword, request.Email, request.Role);
 
             await _userRepo.Add(user);
         }

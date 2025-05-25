@@ -12,18 +12,20 @@ namespace Hotel.Domain.Entities
         public string Name { get; private set; }
         public string PasswordHash {  get; private set; }
         public string Email { get; private set; }
+        public string Role { get; set; }
 
-        private User(Guid id, string name, string passwordHash,string email) 
+        private User(Guid id, string name, string passwordHash,string email, string role) 
         {
             Id = id;
             Name = name;
             PasswordHash = passwordHash;
             Email = email;
+            Role = role;
         }
 
-        public static User Create(Guid id, string name, string passwordhash, string email)
+        public static User Create(Guid id, string name, string passwordhash, string email, string role)
         {
-            return new User(id, name, passwordhash, email);
+            return new User(id, name, passwordhash, email, role);
         }
     }
 }
