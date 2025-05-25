@@ -1,4 +1,5 @@
-﻿using Hotel.API.Service;
+﻿using Hotel.API.Requests;
+using Hotel.API.Service;
 using Hotel.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -33,9 +34,31 @@ namespace Hotel.API.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create([FromBody] Room room)
+        [RequestSizeLimit(10_000_000)]
+        public async Task<IActionResult> Create([FromForm] RoomRequest model)
         {
+            if (model.Image == null || model.Image.Length == 0)
+                return BadRequest("Зображення не завантажено.");
+
+            var fileName = Guid.NewGuid() + Path.GetExtension(model.Image.FileName);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await model.Image.CopyToAsync(stream);
+            }
+
+            var room = new Room
+            {
+                Number = model.Number,
+                IsAvailable = true,
+                PricePerNight = model.PricePerNight,
+                Type = model.Type,
+                Image = $"/images/{fileName}"
+            };
+
             await _roomService.AddRoomAsync(room);
+
             return Ok();
         }
 
