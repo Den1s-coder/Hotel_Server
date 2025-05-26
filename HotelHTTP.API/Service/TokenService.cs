@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Hotel.Domain.Interfaces.Repo;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -6,16 +6,16 @@ using System.Text;
 
 namespace Hotel.API.Service
 {
-    public class TokenService 
+    public class TokenService : ITokenService
     {
         private readonly IConfiguration _config;
 
-        public TokenService (IConfiguration config)
+        public TokenService(IConfiguration config)
         {
             _config = config;
         }
 
-        public string GenerateToken (string username)
+        public string GenerateToken(string username)
         {
             var claims = new[]
             {

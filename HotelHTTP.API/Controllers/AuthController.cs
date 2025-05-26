@@ -13,10 +13,10 @@ namespace Hotel.API.Controllers
     public class AuthController : Controller
     {
         private readonly AuthService _authService;
-        private readonly TokenService _tokenSerive;
+        private readonly ITokenService _tokenSerive;
         private readonly IPasswordHasher _passwordHasher;
 
-        public AuthController(AuthService authService, TokenService tokenSerive, IPasswordHasher passwordHasher)
+        public AuthController(AuthService authService, ITokenService tokenSerive, IPasswordHasher passwordHasher)
         {
             _authService = authService;
             _tokenSerive = tokenSerive;
