@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Hotel.Domain.Entities
 {
-    public class User 
+    public class User
     {
         public Guid Id { get; private set; }
         public string Name { get; private set; }
-        public string PasswordHash {  get; private set; }
+        public string PasswordHash { get; private set; }
         public string Email { get; private set; }
         public string Role { get; set; }
+        public List<Booking> Bookings {get;set;}
 
         private User(Guid id, string name, string passwordHash,string email, string role) 
         {
