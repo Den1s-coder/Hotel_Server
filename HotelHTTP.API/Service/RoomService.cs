@@ -19,7 +19,7 @@ namespace Hotel.API.Service
 
         public async Task<Room?> GetRoomByIdAsync(int id)
         {
-            return await GetRoomByIdAsync(id);
+            return await _roomRepository.GetByIdAsync(id);
         }
 
         public async Task AddRoomAsync(Room room)
