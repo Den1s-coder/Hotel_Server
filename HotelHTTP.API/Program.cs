@@ -17,8 +17,8 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
-builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<RoomService>();
 builder.Services.AddScoped<AuthService>();
 

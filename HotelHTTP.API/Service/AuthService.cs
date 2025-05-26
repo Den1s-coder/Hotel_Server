@@ -8,7 +8,7 @@ namespace Hotel.API.Service
     public class AuthService
     {
         private readonly IUserRepository _userRepo;
-        private readonly TokenService _tokenService;
+        private readonly ITokenService _tokenService;
         private readonly IPasswordHasher _passwordHasher;
 
         public AuthService(IUserRepository userRepo, TokenService tokenService, IPasswordHasher passwordHasher)
@@ -46,7 +46,7 @@ namespace Hotel.API.Service
 
             var token = _tokenService.GenerateToken(user.Email);
 
-            return token ;
+            return token;
         }
 
     }
