@@ -18,7 +18,7 @@ namespace Hotel.Infrastracture.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<User> GetByEmail(string email)
+        public async Task<User> GetByEmailAsync(string email)
         {
             var user = _context.Users.FirstOrDefault(x => x.Email == email);
             return user;

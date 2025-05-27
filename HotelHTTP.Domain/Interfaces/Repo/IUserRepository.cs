@@ -10,6 +10,6 @@ namespace Hotel.Domain.Interfaces.Repo
     public interface IUserRepository
     {
         Task Add(User user);
-        Task<User> GetByEmail(string email);
+        Task<User> GetByEmailAsync(string email);
     }
 }
