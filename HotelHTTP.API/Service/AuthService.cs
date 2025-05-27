@@ -44,7 +44,7 @@ namespace Hotel.API.Service
                 throw new Exception("Невірна пошта або пароль.");
             }
 
-            var token = _tokenService.GenerateToken(user.Email);
+            var token = _tokenService.GenerateToken(user.Email,user.Role);
 
             return token;
         }
