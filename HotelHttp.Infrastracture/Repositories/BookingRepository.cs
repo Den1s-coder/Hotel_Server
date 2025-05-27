@@ -16,6 +16,13 @@ namespace Hotel.Infrastracture.Repositories
 
         public async Task CreateBookingAsync(Booking booking)
         {
+            bool available = await IsRoomAvailable(booking);
+
+            if (!available)
+            {
+                throw new InvalidOperationException("Кімната вже заброньована на вибраний період.");
+            }
+
             _context.Bookings.Add(booking);
             await _context.SaveChangesAsync();
         }
@@ -44,6 +51,16 @@ namespace Hotel.Infrastracture.Repositories
                 .Include(b => b.Room)
                 .Where(b => b.UserId == userId)
                 .ToListAsync();
+        }
+
+        private async Task<bool> IsRoomAvailable(Booking request)
+        {
+            return !await _context.Bookings.AnyAsync(b =>
+                b.RoomId == request.RoomId &&
+                (
+                    (request.CheckInDate < b.CheckOutDate && request.CheckOutDate > b.CheckInDate)
+                )
+            );
         }
     }
 }
