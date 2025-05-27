@@ -31,7 +31,7 @@ namespace Hotel.API.Controllers
                 return NotFound();
             }
 
-            return Ok(user.Email);
+            return Ok(new { email = user.Email, role = user.Role });
         }
     }
 }
