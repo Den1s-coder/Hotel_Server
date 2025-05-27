@@ -4,6 +4,7 @@ using Hotel.Domain.Entities;
 using Hotel.Domain.Interfaces.Auth;
 using Hotel.Domain.Interfaces.Repo;
 using Hotel.Infrastracture;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hotel.API.Controllers
@@ -54,6 +55,20 @@ namespace Hotel.API.Controllers
             });
 
             return Ok(new { token });
+        }
+
+        [Authorize]
+        [HttpPost("logout")]
+        public IActionResult Logout() 
+        {
+            Response.Cookies.Delete("wery_good_cookies", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None
+            });
+
+            return Ok();
         }
     }
 }
