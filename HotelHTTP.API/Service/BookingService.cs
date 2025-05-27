@@ -2,6 +2,7 @@
 using Hotel.Domain.Entities;
 using Hotel.Domain.Interfaces.Repo;
 using Hotel.Infrastracture.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hotel.API.Service
 {
