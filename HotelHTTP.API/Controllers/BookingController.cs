@@ -33,7 +33,7 @@ namespace Hotel.API.Controllers
         [HttpGet("user")]
         public async Task<IActionResult> GetUserBookings()
         {
-            var user = await _userRepository.GetByEmail(User.Identity.Name);
+            var user = await _userRepository.GetByEmailAsync(User.Identity.Name);
             var bookings = await _bookingService.GetUserBookingAsync(user.Id);
             return Ok(bookings);
         }
@@ -42,7 +42,7 @@ namespace Hotel.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] BookingRequest booking)
         {
-            var user = await _userRepository.GetByEmail(User.Identity.Name);
+            var user = await _userRepository.GetByEmailAsync(User.Identity.Name);
             if (user.Id == null)
                 return Unauthorized();
 

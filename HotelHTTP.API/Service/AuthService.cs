@@ -20,7 +20,7 @@ namespace Hotel.API.Service
 
         public async Task Register(RegisterRequest request)
         {
-            var existing = await _userRepo.GetByEmail(request.Email);
+            var existing = await _userRepo.GetByEmailAsync(request.Email);
             if (existing != null)
             {
                 return;
@@ -34,7 +34,7 @@ namespace Hotel.API.Service
 
         public async Task<string> Login(LoginRequest request)
         {
-            var user = await _userRepo.GetByEmail(request.Email);
+            var user = await _userRepo.GetByEmailAsync(request.Email);
             if (user == null)
             {
                 throw new Exception("Невірна пошта або пароль.");
