@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Hotel.Domain.Entities
@@ -15,6 +16,7 @@ namespace Hotel.Domain.Entities
         public Room Room { get; set; }
 
         public Guid UserId {  get; set; }
+        [JsonIgnore]
         public User User { get; set; }
 
         public DateTime CheckInDate { get; set; }
