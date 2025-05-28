@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Hotel.Domain.Entities
@@ -13,6 +14,7 @@ namespace Hotel.Domain.Entities
         public string PasswordHash { get; private set; }
         public string Email { get; private set; }
         public string Role { get; set; }
+        [JsonIgnore]
         public List<Booking> Bookings {get;set;}
 
         private User(Guid id, string name, string passwordHash,string email, string role) 
