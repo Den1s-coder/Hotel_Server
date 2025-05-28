@@ -27,9 +27,24 @@ namespace Hotel.API.Service
             await _roomRepository.AddAsync(room);
         }
 
+        public async Task UpdateRoomAsync(Room room)
+        {
+            await _roomRepository.UpdateAsync(room);
+        }
+
         public async Task DeleteRoomAsync(int id)
         {
             await _roomRepository.DeleteAsync(id);
+        }
+
+        public async Task<IEnumerable<Room>> GetActivityRoomsAsync(DateTime checkIn,DateTime checkOut, int? maxPrice, int? capacity)
+        {
+            return await _roomRepository.GetActivityAsync(checkIn, checkOut, maxPrice, capacity);
+        }
+
+        public async Task UpdatePriceByTypeAsync(string type, decimal newPrice)
+        {
+            await _roomRepository.UpdatePriceByTypeAsync(type, newPrice);
         }
     }
 }
