@@ -13,6 +13,7 @@ namespace Hotel.Domain.Entities
         public bool IsAvailable { get; set; }
         public string Type { get; set; }
         public decimal PricePerNight { get; set; }
+        public int Capacity { get; set; }
         public string? Image {  get; set; }
     }
 }

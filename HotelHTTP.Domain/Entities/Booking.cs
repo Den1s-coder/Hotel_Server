@@ -16,7 +16,6 @@ namespace Hotel.Domain.Entities
         public Room Room { get; set; }
 
         public Guid UserId {  get; set; }
-        [JsonIgnore]
         public User User { get; set; }
 
         public DateTime CheckInDate { get; set; }
