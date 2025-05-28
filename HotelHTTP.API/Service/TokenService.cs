@@ -16,11 +16,11 @@ namespace Hotel.API.Service
             _config = config;
         }
 
-        public string GenerateToken(string username, string role)
+        public string GenerateToken(string email, string role)
         {
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, username),
+                new Claim(ClaimTypes.Name, email),
                 new Claim(ClaimTypes.Role, role)
             };
 
