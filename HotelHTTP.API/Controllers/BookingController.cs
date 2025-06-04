@@ -78,5 +78,4 @@ namespace Hotel.API.Controllers
             return Ok(result);
         }
     }
-
 }
