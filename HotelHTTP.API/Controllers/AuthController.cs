@@ -27,9 +27,19 @@ namespace Hotel.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
-            await _authService.Register(request);
-
-            return Ok("Користувача зареєстровано");
+            try
+            {
+                await _authService.Register(request);
+                return Ok("Користувача зареєстровано");
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Внутрішня помилка сервера");
+            }
         }
 
         [HttpPost("login")]
@@ -41,9 +51,13 @@ namespace Hotel.API.Controllers
             {
                 token = await _authService.Login(request);
             }
-            catch (Exception ex) 
+            catch (InvalidOperationException ex) 
             { 
                 return BadRequest(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Внутрішня помилка сервера");
             }
 
             Response.Cookies.Append("wery_good_cookies", token, new CookieOptions
