@@ -23,7 +23,7 @@ namespace Hotel.API.Service
             var existing = await _userRepo.GetByEmailAsync(request.Email);
             if (existing != null)
             {
-                return;
+                throw new InvalidOperationException("Користувач з такою електронною поштою вже існує.");
             }
 
             var hashedPassword = _passwordHasher.Generate(request.Password);
@@ -37,11 +37,11 @@ namespace Hotel.API.Service
             var user = await _userRepo.GetByEmailAsync(request.Email);
             if (user == null)
             {
-                throw new Exception("Невірна пошта або пароль.");
+                throw new InvalidOperationException("Невірна пошта або пароль.");
             }
             if (!_passwordHasher.Verify(request.Password, user.PasswordHash))
             {
-                throw new Exception("Невірна пошта або пароль.");
+                throw new InvalidOperationException("Невірна пошта або пароль.");
             }
 
             var token = _tokenService.GenerateToken(user.Email,user.Role);
